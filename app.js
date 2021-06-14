@@ -114,12 +114,12 @@ window.addEventListener("keydown", modalCloseEscClick);
 
 function isModalOpen (evt) {
   lightBoxEl.classList.add("is-open");
-  lightboxImgEl.src = evt.target.dataset.source;
+  imgUpdateAttributes (evt.target.dataset.source, evt.target.attributes.alt.nodeValue)
 }
 
 function isModalClose (evt) {
   lightBoxEl.classList.remove("is-open");
-  lightboxImgEl.src = "";
+  imgUpdateAttributes('','')
 }
 
 function modalCloseEscClick(evt) {
@@ -132,6 +132,11 @@ function modalCloseOverlayClick(evt) {
   const isLightboxOverlayEl = evt.target.classList.contains('lightbox__overlay');
   if (isLightboxOverlayEl) {
     isModalClose(evt);
-  }
+  }      
   return;
+}
+
+function imgUpdateAttributes(src, alt) {
+  lightboxImgEl.src = src;
+  lightboxImgEl.alt = alt;
 }
